@@ -26,6 +26,9 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
 
     void Update()
     {
+        if (gm.gameState != GameManager.GameState.GAME) return;
+
+
         float inputX = Input.GetAxis("Horizontal");
         transform.position += new Vector3(inputX, 0, 0) * Time.deltaTime * speed;
 
@@ -34,7 +37,12 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
             rigidBody.AddForce(new Vector2(0, 20.0f) * Time.deltaTime * speed, ForceMode2D.Impulse);
         }
 
-        if(Input.GetAxisRaw("Jump") != 0){ Shoot(); }
+        if (Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME)
+        {
+            gm.ChangeState(GameManager.GameState.PAUSE);
+        }
+
+        if (Input.GetAxisRaw("Jump") != 0){ Shoot(); }
     }
 
     public void Shoot()
@@ -47,6 +55,8 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == "Floor")  isGrounded = true;
+        //if (collision.collider.tag == "Enemy") TakeDamage();
+        if (collision.collider.tag == "EnemyBullet") TakeDamage();
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -55,9 +65,16 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
     }
 
      public void TakeDamage()
-    {
+    {  
+        gm.lifes--;
+        if ((gm.lifes <= 0) && (gm.gameState == GameManager.GameState.GAME)) Die();
+        Debug.Log("Take damage");
+        Debug.Log(gm.lifes);
     }
 
-     public void Die() { Destroy(gameObject); }
+     public void Die() {
+        gm.ChangeState(GameManager.GameState.END);
+        Destroy(gameObject);
+    }
 
 }
