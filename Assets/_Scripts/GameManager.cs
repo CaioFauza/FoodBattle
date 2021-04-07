@@ -27,7 +27,7 @@ public class GameManager
 
     private GameManager()
     {
-        lifes = 15;
+        lifes = 5;
         points = 0;
         gameState = GameState.MENU;
     }
@@ -41,7 +41,7 @@ public class GameManager
 
     private void Reset()
     {
-        lifes = 15;
+        lifes = 5;
         points = 0;
     }
 
