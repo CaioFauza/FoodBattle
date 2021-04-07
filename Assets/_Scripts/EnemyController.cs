@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         life -= 0.25f;
         healthBar.fillAmount = life;
+        gm.points += 20;
+        Debug.Log(gm.points);
         if(life <= 0) Die();
     }
 
