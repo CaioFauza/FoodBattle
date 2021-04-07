@@ -27,21 +27,21 @@ public class GameManager
 
     private GameManager()
     {
-        lifes = 5;
+        lifes = 15;
         points = 0;
         gameState = GameState.MENU;
     }
 
     public void ChangeState(GameState nextState)
     {
-        if(nextState == GameState.GAME) Reset();
+        if(nextState == GameState.GAME && gameState != GameState.PAUSE) Reset();
         gameState = nextState;
         changeStateDelegate();
     }
 
     private void Reset()
     {
-        lifes = 5;
+        lifes = 15;
         points = 0;
     }
 

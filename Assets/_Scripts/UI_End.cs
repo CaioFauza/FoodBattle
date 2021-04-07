@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class UI_End : MonoBehaviour
 {
     public Text message;
-
     GameManager gm;
+
     private void OnEnable()
     {
         gm = GameManager.GetInstance();
@@ -17,7 +17,7 @@ public class UI_End : MonoBehaviour
             message.text = "YOU WON!!!";
         }
         else
-        {
+        {   
             message.text = "YOU LOST!!";
         }
     }

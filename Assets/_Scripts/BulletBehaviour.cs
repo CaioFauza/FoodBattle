@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class BulletBehaviour : SteerableBehaviour
 {
-    void Update()
+    GameManager gm;
+    private float direction;
+    
+    void Start()
     {
-        Thrust(2, 0);
+        gm = GameManager.GetInstance();
+        direction = GameObject.FindWithTag("Player").transform.localScale.x;
+    }
+
+    void Update()
+    {   
+        if(gm.gameState != GameManager.GameState.GAME) return;
+        Thrust(direction * 2, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

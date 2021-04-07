@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad8b4c89a3298f458f5e2c316a9a28c, type: 3}
   m_Name: BulletData
   m_EditorClassIdentifier: 
-  thrustIntensity: {x: 5, y: 0}
+  thrustIntensity: {x: 3, y: 0}

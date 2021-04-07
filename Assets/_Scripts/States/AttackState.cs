@@ -14,7 +14,7 @@ public class AttackState : State
         base.Awake();
 
         Transition patrol = new Transition();
-        patrol.condition = new ConditionDistanceGT(transform, GameObject.FindWithTag("Player").transform, 5.0f);
+        patrol.condition = new ConditionDistanceGT(transform, GameObject.FindWithTag("Player").transform, 10.0f);
         patrol.target = GetComponent<PatrolState>();
         transitions.Add(patrol);
 
