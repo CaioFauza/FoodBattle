@@ -8,6 +8,16 @@ TagManager:
   - Enemy
   - EnemyBullet
   - Boss
+  - H1
+  - H2
+  - H3
+  - H4
+  - H5
+  - HB1
+  - HB2
+  - HB3
+  - HB4
+  - HB5
   layers:
   - Default
   - TransparentFX
