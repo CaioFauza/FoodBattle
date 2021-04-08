@@ -14,11 +14,11 @@ public class UI_End : MonoBehaviour
 
         if (gm.lifes > 0)
         {
-            message.text = "YOU WON!!!";
+            message.text = "YOU WIN!!!";
         }
         else
         {   
-            message.text = "YOU LOST!!";
+            message.text = "YOU LOSE!!";
         }
     }
 
