@@ -6,6 +6,7 @@ public class GameManager
 {
     public int lifes;
     public int points;
+    public bool warningStatus;
 
     private static GameManager _instance;
 
@@ -29,6 +30,7 @@ public class GameManager
     {
         lifes = 5;
         points = 0;
+        warningStatus = false;
         gameState = GameState.MENU;
     }
 
@@ -43,6 +45,7 @@ public class GameManager
     {
         lifes = 5;
         points = 0;
+        warningStatus = false;
     }
 
 }

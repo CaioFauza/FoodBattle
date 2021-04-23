@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : SteerableBehaviour, IShooter, IDamageable
 {
@@ -14,8 +15,9 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
     private float _lastShootTimeStamp = 0.0f;
     bool isGrounded = true;
     int speed;
+    Text warningText;
 
-    public AudioClip shootSFX, damageSFX, gameOverSFX;
+    public AudioClip shootSFX, damageSFX, gameOverSFX, warningSFX;
     
     private void Start()
     {
@@ -23,6 +25,8 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
        gm = GameManager.GetInstance();
        rigidBody = GetComponent<Rigidbody2D>();
        speed = 9;
+       warningText = GameObject.Find("UI_WarningText").GetComponent<Text>();
+       warningText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -58,7 +62,7 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
         if (Input.GetKeyDown(KeyCode.Space)) Shoot(); 
 
         if(transform.position.y < -5.0f) {
-            transform.position = new Vector3(-6.41f, -1.38f, 0);
+            transform.position = new Vector3(-93.41f, -1.38f, 0);
             gm.lifes = 0;
             Die();
         }
@@ -76,6 +80,12 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
     {
         if (collision.collider.tag == "Floor") isGrounded = true;
         if (collision.collider.tag == "Enemy" && gm.gameState == GameManager.GameState.GAME) TakeDamage();
+        if(collision.collider.tag == "Warning" && !gm.warningStatus){
+            AudioManager.PlaySFX(warningSFX);
+            warningText.gameObject.SetActive(true);
+            StartCoroutine(DelayRemove(warningText.gameObject));
+            gm.warningStatus = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -93,6 +103,11 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
      public void Die() {
         AudioManager.PlaySFX(gameOverSFX);
         gm.ChangeState(GameManager.GameState.END);
+    }
+
+    IEnumerator DelayRemove(GameObject obj){
+        yield return(new WaitForSeconds(2));
+        obj.SetActive(false);
     }
 
 }
