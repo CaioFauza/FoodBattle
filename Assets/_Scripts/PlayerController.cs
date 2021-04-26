@@ -32,7 +32,6 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
     void Update()
     {
         if (gm.gameState != GameManager.GameState.GAME) return;
-
         float inputX = Input.GetAxis("Horizontal");
         bool jumpInput = Input.GetKeyDown(KeyCode.UpArrow);
 
@@ -101,6 +100,9 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
     }
 
      public void Die() {
+        animator.SetFloat("Speed", 0.0f);
+        animator.SetFloat("Jump", 0.0f);
+        transform.position = new Vector3(-93.41f, -1.38f, 0);
         AudioManager.PlaySFX(gameOverSFX);
         gm.ChangeState(GameManager.GameState.END);
     }
