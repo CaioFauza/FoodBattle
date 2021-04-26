@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 3440416524233694626}
   - component: {fileID: 3440416524233694627}
   - component: {fileID: 3440416524233694653}
+  - component: {fileID: 1284148754}
   m_Layer: 0
   m_Name: PizzaEnemy
   m_TagString: Enemy
@@ -268,7 +269,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3440416524233694628}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -354,6 +355,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &1284148754
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3440416524233694628}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.011384487, y: 0.03984642}
+  serializedVersion: 2
+  m_Radius: 2.1359978
 --- !u!1 &3440416524339115688
 GameObject:
   m_ObjectHideFlags: 0

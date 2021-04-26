@@ -5,17 +5,19 @@ using UnityEngine;
 public class BulletBehaviour : SteerableBehaviour
 {
     GameManager gm;
-    private float direction;
+    private float direction, initialTime;
     
     void Start()
     {
         gm = GameManager.GetInstance();
         direction = GameObject.FindWithTag("Player").transform.localScale.x;
+        initialTime = Time.time;
     }
 
     void Update()
     {   
         if(gm.gameState != GameManager.GameState.GAME) return;
+        if(Time.time - initialTime >= 1.1f ) Destroy(gameObject);
         Thrust(direction * 2, 0);
     }
 
